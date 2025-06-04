@@ -1,39 +1,4 @@
-"""
-Generates a Njattuvela (Nakshatra-based solar period) calendar for a given Gregorian year.
 
-Key Functionalities:
-- Calculates the Sun's sidereal longitude for each day using the SiderealKundliCraft library.
-- Determines the Nakshatra (lunar mansion) the Sun is transiting based on this longitude.
-- Tracks the periods (Njattuvelas) when the Sun remains in each Nakshatra.
-- Converts Gregorian start/end dates of these periods to Malayalam calendar dates
-  using the 'kollavarsham' library for better accuracy.
-- Outputs the calendar in a formatted table.
-
-Required Libraries:
-- kollavarsham: For accurate Malayalam calendar conversions.
-- SiderealKundliCraft: For precise astronomical calculations (solar longitude, Ayanamsa).
-- pytz: For timezone handling, often a dependency or utility for date/time libraries.
-
-You can install these libraries using pip:
-  pip install kollavarsham SiderealKundliCraft pytz
-
-Important Notes & Simplifications:
-- Astronomical Calculations: Uses the SiderealKundliCraft library for planetary positions,
-  which relies on Swiss Ephemeris. The accuracy is subject to this library.
-  A default Ayanamsa (Lahiri) is used.
-- Time of Day for Calculations: Nakshatra transitions are based on the Sun's longitude
-  calculated at a fixed time of day (6:00 AM local time) for each date. Actual
-  transitions can occur at any time during the day.
-- Malayalam Date Conversion: Uses the 'kollavarsham' library with default settings for
-  Kerala and the 'SuryaSiddhanta' system.
-- Nakshatra Sanskrit Names: The provided Nakshatra data includes both Malayalam and
-  Sanskrit names from the source list.
-
-Disclaimer:
-This script is for illustrative and educational purposes. For precise astrological,
-agricultural, or religious purposes, users should consult a professionally computed
-Panchangam or use specialized astronomical libraries and verify all settings.
-"""
 from datetime import date, datetime as dt, time, timedelta
 from kollavarsham import Kollavarsham, KollavarshamDate
 import pytz
