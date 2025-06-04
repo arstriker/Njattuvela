@@ -4,16 +4,6 @@ from kollavarsham import Kollavarsham, KollavarshamDate
 import pytz
 from SiderealKundliCraft import SiderealAstroData
 
-# This script requires the following Python libraries:
-# - kollavarsham
-# - SiderealKundliCraft
-# - pytz
-# Install them using:
-# pip install kollavarsham SiderealKundliCraft pytz
-
-# --- Nakshatra Data ---
-# NAKSHATRAS_DATA defines the span of each Nakshatra in sidereal degrees.
-# End degree is exclusive for the check (i.e., Nakshatra contains longitudes >= start_deg and < end_deg).
 NAKSHATRAS_DATA = [
     {"malayalam": "Aswathi", "sanskrit": "Ashwini", "start_deg": 0.0, "end_deg": 13.333333333333334},
     {"malayalam": "Bharani", "sanskrit": "Bharani", "start_deg": 13.333333333333334, "end_deg": 26.666666666666668},
@@ -44,7 +34,7 @@ NAKSHATRAS_DATA = [
     {"malayalam": "Revathi", "sanskrit": "Revati", "start_deg": 346.66666666666663, "end_deg": 360.0}
 ]
 
-# --- Default Astronomical Calculation Parameters ---
+#  Default Astronomical Calculation Parameters
 DEFAULT_LATITUDE = 10.5276
 DEFAULT_LONGITUDE = 76.2144
 DEFAULT_UTC_OFFSET_HOURS = 5
@@ -54,7 +44,7 @@ DEFAULT_AYANAMSA_TYPE = "ay_lahiri"
 def get_sun_sidereal_longitude_accurate(datetime_obj: dt, latitude: float, longitude: float,
                                         utc_offset_hours: int, utc_offset_minutes: int,
                                         ayanamsa_type: str = "ay_lahiri") -> float | None:
-    """Calculates Sun's sidereal longitude using SiderealKundliCraft."""
+
     try:
         astro_data = SiderealAstroData.AstroData(
             datetime_obj.year, datetime_obj.month, datetime_obj.day,
@@ -71,9 +61,7 @@ def get_sun_sidereal_longitude_accurate(datetime_obj: dt, latitude: float, longi
         return None
 
 def get_current_nakshatra_details(gregorian_date_input: date) -> dict | None:
-    """
-    Determines Nakshatra based on Sun's sidereal longitude (SiderealKundliCraft at 6:00 AM local).
-    """
+
     calc_datetime = dt(gregorian_date_input.year, gregorian_date_input.month, gregorian_date_input.day, 6, 0, 0)
     sun_lon_sidereal = get_sun_sidereal_longitude_accurate(
         calc_datetime,
@@ -93,12 +81,7 @@ def get_current_nakshatra_details(gregorian_date_input: date) -> dict | None:
     return None
 
 def gregorian_to_malayalam_date(gregorian_date_input: date) -> dict:
-    """
-    Converts Gregorian date to Malayalam date using 'kollavarsham' library.
-    Uses default Kerala settings and SuryaSiddhanta system.
-    Input date is converted to timezone-aware datetime at midnight IST.
-    Returns dict: {"malayalam_month", "malayalam_day", "kollavarsham_year"}.
-    """
+
     kollavarsham_converter = Kollavarsham(
         latitude=DEFAULT_LATITUDE,
         longitude=DEFAULT_LONGITUDE,
@@ -125,7 +108,6 @@ def gregorian_to_malayalam_date(gregorian_date_input: date) -> dict:
     }
 
 def generate_njattuvela_calendar(target_gregorian_year: int) -> list:
-    """Generates Njattuvela periods for a Gregorian year."""
     njattuvela_periods = []
     start_of_year = date(target_gregorian_year, 1, 1)
     end_of_year = date(target_gregorian_year, 12, 31)
@@ -171,7 +153,7 @@ def generate_njattuvela_calendar(target_gregorian_year: int) -> list:
     return njattuvela_periods
 
 def format_malayalam_period_string(start_info: dict, end_info: dict) -> str:
-    """Formats Malayalam period string (Month Day-Day (Year) or Month Day (Year) - Month Day (Year))."""
+
     if start_info['malayalam_month'] == end_info['malayalam_month'] and \
        start_info['kollavarsham_year'] == end_info['kollavarsham_year']:
         return f"{start_info['malayalam_month']} {start_info['malayalam_day']}-{end_info['malayalam_day']} ({start_info['kollavarsham_year']})"
@@ -180,7 +162,7 @@ def format_malayalam_period_string(start_info: dict, end_info: dict) -> str:
                 f"{end_info['malayalam_month']} {end_info['malayalam_day']} ({end_info['kollavarsham_year']})")
 
 def print_njattuvela_table(calendar_data: list, target_year: int):
-    """Prints Njattuvela calendar data in a formatted table."""
+
     print(f"\n--- Njattuvela Calendar for Gregorian Year: {target_year} (using SiderealKundliCraft) ---")
     header = {
         "mal_name": "Malayalam Name", "san_name": "Sanskrit Name",
@@ -217,10 +199,8 @@ def print_njattuvela_table(calendar_data: list, target_year: int):
               f"{malayalam_period_str:<{w['mal_period']}}")
 
 if __name__ == "__main__":
-    # The specific date test for user-mentioned date was here for verification
-    # and has been removed to keep the main output clean.
 
-    TARGET_YEAR = 2024
+    TARGET_YEAR = int(input("Enter the year to be calculated: "))
     calendar_data = generate_njattuvela_calendar(TARGET_YEAR)
     print_njattuvela_table(calendar_data, TARGET_YEAR)
     print("\nAll processing completed.")
