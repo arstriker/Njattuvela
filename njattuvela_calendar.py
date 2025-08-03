@@ -198,9 +198,5 @@ def print_njattuvela_table(calendar_data: list, target_year: int):
               f"{duration_str:<{w['duration']}} | "
               f"{malayalam_period_str:<{w['mal_period']}}")
 
-if __name__ == "__main__":
-
-    TARGET_YEAR = int(input("Enter the year to be calculated: "))
-    calendar_data = generate_njattuvela_calendar(TARGET_YEAR)
-    print_njattuvela_table(calendar_data, TARGET_YEAR)
-    print("\nAll processing completed.")
+# The main execution block has been removed to allow this file to be used as a module.
+# The web interface for this script is now in `app.py`.
