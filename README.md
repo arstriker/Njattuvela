@@ -19,25 +19,39 @@ This script calculates the start and end dates of each Njattuvela period, its du
 
 ## Requirements
 
-To run this script, you need Python 3 and the following libraries:
-
-*   `kollavarsham`
-*   `SiderealKundliCraft`
-*   `pytz`
+To run this project, you need Python 3 and the libraries listed in `requirments.txt`.
 
 You can install these dependencies using pip:
+```bash
+pip install -r requirments.txt
+```
 
+## Web Interface Usage
 
-pip install kollavarsham SiderealKundliCraft pytz
-Usage
-Save the script as njattuvela_calendar.py (or your preferred filename).
+This project includes a user-friendly web interface. To run it, follow these steps:
 
-Open a terminal or command prompt.
+1.  **Install Dependencies:**
+    Make sure you have installed all the required packages:
+    ```bash
+    pip install -r requirments.txt
+    ```
 
-Run the script using Python:
+2.  **Run the Web Server:**
+    Start the Flask development server with the following command:
+    ```bash
+    python3.12 app.py
+    ```
+    *Note: It is recommended to use `python3.12`. If that is not available, you can try `python3`.*
 
-python njattuvela_calendar.py
-By default, the script generates the calendar for the year 2024. You can change the TARGET_YEAR variable within the script's if __name__ == "__main__": block to generate the calendar for a different year.
+3.  **Access the Application:**
+    Open your web browser and navigate to:
+    [http://127.0.0.1:5000/](http://127.0.0.1:5000/)
+
+    You can then enter a year in the input field and click "Generate Calendar" to see the results.
+
+## Command-Line Usage (Legacy)
+
+The original command-line script `njattuvela_calendar.py` is still available but is no longer the primary way to run the program. To use it, you would need to restore the main execution block in the script.
 
 Output Format
 The script will print a table to the console with the following columns:
