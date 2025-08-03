@@ -1,0 +1,21 @@
+INFO:root:Starting application
+INFO:root:Starting application
+INFO:root:Flask imported successfully
+INFO:root:njattuvela_calendar imported successfully
+INFO:root:Starting Flask server
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 610-203-682
+INFO:root:Index function called
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 15:04:00] "GET / HTTP/1.1" 200 -
+INFO:root:Starting application
+INFO:root:Starting application
+INFO:root:Flask imported successfully
+INFO:root:njattuvela_calendar imported successfully
+INFO:root:Starting Flask server
+WARNING:werkzeug: * Debugger is active!
+INFO:werkzeug: * Debugger PIN: 610-203-682
+INFO:root:Index function called
+INFO:root:Year received: 2024
+INFO:root:Calendar data generated
+INFO:root:Calendar data formatted
+INFO:werkzeug:127.0.0.1 - - [03/Aug/2025 15:04:19] "POST / HTTP/1.1" 200 -

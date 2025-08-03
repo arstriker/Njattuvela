@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Njattuvela Calendar</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Njattuvela Calendar</h1>
+        <p class="description">
+            The Njattuvela calendar is a traditional Kerala system that tracks the Sun's transit through the 27 Nakshatras (star constellations).
+            Enter a Gregorian year below to generate the calendar.
+        </p>
+        <form method="POST">
+            <input type="number" name="year" placeholder="Enter a year (e.g., 2024)" required>
+            <button type="submit">Generate Calendar</button>
+        </form>
+
+        {% if calendar_data %}
+        <h2>Calendar for {{ year }}</h2>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Malayalam Name</th>
+                        <th>Sanskrit Name</th>
+                        <th>Start Date (Greg.)</th>
+                        <th>End Date (Greg.)</th>
+                        <th>Duration</th>
+                        <th>Malayalam Period</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for period in calendar_data %}
+                    <tr>
+                        <td>{{ period.malayalam_name }}</td>
+                        <td>{{ period.sanskrit_name }}</td>
+                        <td>{{ period.start_date_gregorian.isoformat() }}</td>
+                        <td>{{ period.end_date_gregorian.isoformat() }}</td>
+                        <td>{{ period.duration_days }} days</td>
+                        <td>{{ period.malayalam_period_str }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
