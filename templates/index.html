@@ -20,32 +20,23 @@
 
         {% if calendar_data %}
         <h2>Calendar for {{ year }}</h2>
-        <div class="table-container">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Malayalam Name</th>
-                        <th>Sanskrit Name</th>
-                        <th>Start Date (Greg.)</th>
-                        <th>End Date (Greg.)</th>
-                        <th>Duration</th>
-                        <th>Malayalam Period</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for period in calendar_data %}
-                    <tr>
-                        <td>{{ period.malayalam_name }}</td>
-                        <td>{{ period.sanskrit_name }}</td>
-                        <td>{{ period.start_date_gregorian.isoformat() }}</td>
-                        <td>{{ period.end_date_gregorian.isoformat() }}</td>
-                        <td>{{ period.duration_days }} days</td>
-                        <td>{{ period.malayalam_period_str }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div class="wheel-container">
+            <canvas id="wheelCanvas" width="600" height="600"></canvas>
+            <div id="spinButton">SPIN</div>
         </div>
+
+        <div id="infoBox" class="hidden">
+            <div id="infoBoxContent">
+                <!-- Info will be populated by JavaScript -->
+            </div>
+            <button id="closeInfoBox">Close</button>
+        </div>
+
+        <script>
+            // Pass data from Flask to JavaScript
+            const calendarData = JSON.parse('{{ calendar_data_json|safe }}');
+        </script>
+        <script src="{{ url_for('static', filename='wheel.js') }}"></script>
         {% endif %}
     </div>
 </body>

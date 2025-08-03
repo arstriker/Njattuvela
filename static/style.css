@@ -81,35 +81,85 @@ h2 {
     margin-bottom: 20px;
 }
 
-.table-container {
-    overflow-x: auto;
+.wheel-container {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    margin: 30px auto;
 }
 
-table {
-    width: 100%;
-    border-collapse: collapse;
+#wheelCanvas {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#wheelCanvas:hover {
+    transform: scale(1.02);
+}
+
+#spinButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px;
+    height: 100px;
+    background-color: #e74c3c;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#spinButton:hover {
+    background-color: #c0392b;
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+#infoBox {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    background-color: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    z-index: 1000;
+    border-top: 5px solid #3498db;
+}
+
+#infoBox.hidden {
+    display: none;
+}
+
+#infoBox h3 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+#infoBox p {
+    line-height: 1.6;
+}
+
+#closeInfoBox {
     margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #95a5a6;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-th, td {
-    padding: 15px;
-    text-align: left;
-    border-bottom: 1px solid #eaecee;
-}
-
-thead {
-    background-color: #ecf0f1;
-}
-
-th {
-    font-weight: 700;
-    color: #34495e;
-}
-
-tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-tbody tr:hover {
-    background-color: #f1f1f1;
+#closeInfoBox:hover {
+    background-color: #7f8c8d;
 }
