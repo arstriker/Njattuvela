@@ -18,7 +18,7 @@
             <button type="submit">Generate Calendar</button>
         </form>
 
-        {% if calendar_data %}
+        {% if calendar_data_json %}
         <h2>Calendar for {{ year }}</h2>
         <div class="wheel-container">
             <canvas id="wheelCanvas" width="600" height="600"></canvas>
